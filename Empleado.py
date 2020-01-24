@@ -15,10 +15,13 @@ class Empleado:
     def set_sueldoTotal(self):
         self.sueldo_total = self.sueldo+self.bono+self.comision
 
-    def set_empleado(self):
-        self.empleado.append({'nombre':self.nombre,'sueldo':self.sueldo,
+    def set_empleado(self, data = []):
+        if len(data)==0:
+            self.empleado.append({'nombre':self.nombre,'sueldo':self.sueldo,
                               'bono':self.bono,'comision':self.comision,
                               'Sueldo_Total': self.sueldo_total,'carros':self.carro.get_carro()})
+        else:
+            self.empleado.append(data)
         self.carro.borrarCarro()
 
     def get_empleado(self):

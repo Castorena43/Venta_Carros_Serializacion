@@ -2,7 +2,6 @@ from Venta import Venta
 from pickle import Pickler
 
 
-
 class Interfaz():
 
     def __init__(self):
@@ -13,8 +12,6 @@ class Interfaz():
         self.Ingresar_Empleado()
         self.venta.Mostrar_nomina(self.venta.get_Empleado().empleado)
         self.venta.Serializar()
-
-
 
     def Ingresar_Carro(self):
         opcion = ""
@@ -41,5 +38,3 @@ class Interfaz():
             else:
                 break
         '''print(self.venta.get_empleados())'''
-
-

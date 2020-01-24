@@ -32,5 +32,7 @@ class Venta():
                 # The protocol version used is detected automatically, so we do not
                 # have to specify it.
                 data = pickle.load(f)
+                for x in data:
+                    self.empleado.set_empleado(x)
 
             self.Mostrar_nomina(data)
