@@ -27,12 +27,11 @@ class Venta():
 
     def Deserializar(self):
         opcion = input("Quieres ver los archivos")
+        with open('pickled_file.pickle', 'rb') as f:
+            # The protocol version used is detected automatically, so we do not
+            # have to specify it.
+            data = pickle.load(f)
+            for x in data:
+                self.empleado.set_empleado(x)
         if opcion == "si":
-            with open('pickled_file.pickle', 'rb') as f:
-                # The protocol version used is detected automatically, so we do not
-                # have to specify it.
-                data = pickle.load(f)
-                for x in data:
-                    self.empleado.set_empleado(x)
-
             self.Mostrar_nomina(data)
