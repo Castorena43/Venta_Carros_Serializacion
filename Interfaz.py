@@ -1,12 +1,19 @@
 from Venta import Venta
 from pickle import Pickler
-import pickle
+
 
 
 class Interfaz():
 
     def __init__(self):
         self.venta = Venta()
+
+    def Run(self):
+        self.venta.Deserializar()
+        self.Ingresar_Empleado()
+        self.venta.Mostrar_nomina(self.venta.get_Empleado().empleado)
+        self.venta.Serializar()
+
 
 
     def Ingresar_Carro(self):
@@ -35,21 +42,4 @@ class Interfaz():
                 break
         '''print(self.venta.get_empleados())'''
 
-    def Mostrar_nomina(self):
-        for empleado in self.venta.get_Empleado().get_empleado():
-            print('Nombre: ' + empleado['nombre'] + '    Sueldo Total: ' + str(empleado['Sueldo_Total']))
 
-    def Serializar(self):
-        self.opcion = input("Quieres cargar los archivos")
-        if self.opcion == "si":
-            with open('pickled_file.pickle', 'wb') as f:
-                # Pickle the 'data' dictionary using the highest protocol available.
-                pickle.dump(self.venta.get_Empleado().get_empleado(), f, pickle.HIGHEST_PROTOCOL)
-
-    def Deserializar(self):
-        if self.opcion == "si":
-            with open('pickled_file.pickle', 'rb') as f:
-                # The protocol version used is detected automatically, so we do not
-                # have to specify it.
-                data = pickle.load(f)
-            print(data)
