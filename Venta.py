@@ -1,15 +1,12 @@
 from Empleado import Empleado
 import pickle
+import os.path as path
 
 
 class Venta():
 
     def __init__(self):
         self.empleado = Empleado()
-
-
-    '''def detalle_Venta(self, nombre, total):
-        print("Nombre: " + str(nombre) + " Sueldo: " + total)'''
 
     def get_Empleado(self):
         return self.empleado
@@ -21,18 +18,20 @@ class Venta():
     def Serializar(self):
         opcion = input("Quieres guardar los archivos")
         if opcion == "si":
-            with open('pickled_file.pickle', 'wb') as f:
+            with open('data.pickle', 'wb') as f:
                 # Pickle the 'data' dictionary using the highest protocol available.
                 pickle.dump(self.empleado.get_empleado(), f, pickle.HIGHEST_PROTOCOL)
 
     def Deserializar(self):
-        opcion = input("Quieres cargar los archivos si/no")
-        if opcion == "si":
-            with open('pickled_file.pickle', 'rb') as f:
+        if path.exists('data.pickle'):
+            with open('data.pickle', 'rb') as f:
                 # The protocol version used is detected automatically, so we do not
                 # have to specify it.
                 data = pickle.load(f)
-                for x in data:
-                    self.empleado.set_empleado(x)
-
-                self.Mostrar_nomina(data)
+                if data:
+                    for x in data:
+                        self.empleado.set_empleado(x)
+                    self.Mostrar_nomina(data)
+        else:
+            file = open('data','wb')
+            file.close()
